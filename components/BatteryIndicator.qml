@@ -12,9 +12,17 @@ Item {
         api.device ? api.device.batteryPercent : 0
     }
 
+    property var charging: {
+        api.device ? api.device.batteryCharging : false
+    }
+
+    property var batterySource: {
+        "../assets/images/" + "battery" + (charging ? "-charging" : "") + (lightStyle ? "" : "-dark") + ".png"
+    }
+
     Image {
         id: iconImage
-        source: lightStyle ? "../assets/images/battery.png" : "../assets/images/battery-dark.png"
+        source: batterySource
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
     }
